@@ -1,3 +1,7 @@
 body {
   font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+header {
+  background-color: #3136e8;
+}
