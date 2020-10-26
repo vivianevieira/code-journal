@@ -5,11 +5,11 @@ body {
 header {
   background-color: #3136e8;
   color: white;
-  padding: 0.3rem;
+  padding: 1rem;
 }
 
 .column-half > img {
-  width: 21rem;
+  width: 100%;
 }
 
 label,
@@ -36,5 +36,5 @@ textarea {
   margin-bottom: 1.5rem;
   border: 1px solid rgb(189, 189, 189);
   font-size: 1rem;
-  font-family: sans-serif;
+  font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
