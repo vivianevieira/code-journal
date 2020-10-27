@@ -1,7 +1,8 @@
 var urlInput = document.querySelector('input[name="avatarUrl"]');
+var avatar = document.getElementById('avatar');
 
 urlInput.addEventListener('input', function (event) {
-  document.getElementById('avatar').src = event.target.value;
+  avatar.src = event.target.value;
 });
 
 var $form = document.querySelector('.profile');
@@ -13,5 +14,6 @@ $form.addEventListener('submit', function (event) {
   data.profile.location = $form.elements.location.value;
   data.profile.avatarUrl = $form.elements.avatarUrl.value;
   data.profile.bio = $form.elements.bio.value;
+  document.getElementById('avatar').src = 'images/placeholder-image-square.jpg';
   $form.reset();
 });
