@@ -1,11 +1,11 @@
-var urlInput = document.querySelector('input[name="avatarUrl"]');
-var avatar = document.getElementById('avatar');
+var $urlInput = document.querySelector('input[name="avatarUrl"]');
+var $avatar = document.getElementById('avatar');
 
-urlInput.addEventListener('input', function (event) {
-  avatar.src = event.target.value;
+$urlInput.addEventListener('input', function (event) {
+  $avatar.src = event.target.value;
 });
 
-var $form = document.querySelector('.profile');
+var $form = document.querySelector('#profile-form');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -14,6 +14,11 @@ $form.addEventListener('submit', function (event) {
   data.profile.location = $form.elements.location.value;
   data.profile.avatarUrl = $form.elements.avatarUrl.value;
   data.profile.bio = $form.elements.bio.value;
-  document.getElementById('avatar').src = 'images/placeholder-image-square.jpg';
+  $avatar.src = 'images/placeholder-image-square.jpg';
   $form.reset();
+});
+
+window.addEventListener('beforeunload', function (event) {
+  var dataJson = JSON.stringify(data);
+  localStorage.setItem('data-profile-storage', dataJson);
 });
