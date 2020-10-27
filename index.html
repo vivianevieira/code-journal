@@ -12,12 +12,61 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <h3 class="container">Code Journal</h3>
   </header>
   <main>
     <div data-view="edit-profile"></div>
+    <div class="container">
+      <form id="profile-form">
+        <h2>Edit Profile</h2>
+        <div class="row">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="avatar" id="avatar">
+          </div>
+          <div class="column-half">
+            <label for="avatar-url">Avatar URL</label>
+            <input
+              required
+              name="avatarUrl"
+              type="url"
+              id="avatar-url">
+            <label for="username">Username</label>
+            <input
+              required
+              name="username"
+              type="text"
+              id="username">
+            <label for="full-name">Full Name</label>
+            <input
+              required
+              name="fullName"
+              type="text"
+              id="full-name">
+            <label for="location">Location</label>
+            <input
+              required
+              name="location"
+              type="text"
+              id="location">
+          </div>
+          <div class="column-full">
+            <label for="bio">Bio</label>
+            <textarea
+              required
+              rows="5"
+              name="bio"
+              id="bio"></textarea>
+            <div class="save-button">
+              <button type="submit">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

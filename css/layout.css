@@ -31,4 +31,12 @@
   .column-half {
     width: 50%;
   }
+
+  form > h2 {
+    padding: 0 0.75rem;
+  }
+
+  header {
+    padding-left: 0.75rem;
+  }
 }
