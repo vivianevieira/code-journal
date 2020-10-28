@@ -55,6 +55,16 @@ p {
   line-height: 1.5;
 }
 
+a {
+  background-color: #3136e8;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+}
+
 .save-button {
   display: flex;
   justify-content: flex-end;

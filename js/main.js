@@ -84,6 +84,15 @@ function profileView() {
   $bioParagraph.textContent = data.profile.bio;
   $divRightColumn.appendChild($bioParagraph);
 
+  var $buttonParagraph = document.createElement('p');
+  $divRightColumn.appendChild($buttonParagraph);
+
+  var $editButton = document.createElement('a');
+  $editButton.setAttribute('href', '#');
+  $editButton.setAttribute('data-view', 'edit-profile');
+  $editButton.textContent = 'Edit';
+  $buttonParagraph.appendChild($editButton);
+
   var domTree = $divContainer;
 
   return domTree;
