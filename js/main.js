@@ -25,11 +25,9 @@ window.addEventListener('beforeunload', function (event) {
 });
 
 function profileView() {
-  // var $profileDataView = document.querySelector("div[data-view=profile]");
 
   var $divContainer = document.createElement('div');
   $divContainer.setAttribute('class', 'container');
-  // $profileDataView.appendChild($divContainer);
 
   var $fullName = document.createElement('h2');
   $fullName.textContent = data.profile.fullName;
