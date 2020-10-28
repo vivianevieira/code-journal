@@ -84,8 +84,6 @@ function domTree() {
   return $divContainer;
 }
 
-var $button = document.querySelector("button");
-document.
 
 function viewSwapping(dataView) {
   var $editProfileView = document.querySelector("div[data-view=edit-profile]");
