@@ -19,13 +19,13 @@
     <h3 class="container">Code Journal</h3>
   </header>
   <main>
-    <div data-view="edit-profile"></div>
+    <div data-view="edit-profile" class="hidden">
     <div class="container">
       <form id="profile-form">
         <h2>Edit Profile</h2>
         <div class="row">
           <div class="column-half">
-            <img src="images/placeholder-image-square.jpg" alt="avatar" id="avatar">
+            <img src="images/placeholder-image-square.jpg" alt="avatar" class="avatar">
           </div>
           <div class="column-half">
             <label for="avatar-url">Avatar URL</label>
@@ -67,6 +67,10 @@
         </div>
       </form>
     </div>
+  </div>
+  <div data-view="profile" class="hidden" >
+<!-- DOM tree -->
+  </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
