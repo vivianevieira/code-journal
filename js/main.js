@@ -96,4 +96,6 @@ function viewSwapping(dataView) {
     $profileView.className = '';
     $editProfileView.className = 'hidden';
   }
+
+  data.view = dataView;
 }
