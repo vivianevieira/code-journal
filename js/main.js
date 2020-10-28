@@ -107,6 +107,17 @@ function viewSwapping(dataView) {
   data.view = dataView;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+// check for existing username created and load page accordingly //
+var previousProfileJson = localStorage.getItem('data-profile-storage');
 
+if (previousProfileJson !== null) {
+  data = JSON.parse(previousProfileJson);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  if (data.profile.username === '') {
+    viewSwapping('edit-profile');
+  } else if (data.profile.username !== '') {
+    viewSwapping('profile');
+  }
 });
