@@ -83,3 +83,19 @@ function domTree() {
 
   return $divContainer;
 }
+
+var $button = document.querySelector("button");
+document.
+
+function viewSwapping(dataView) {
+  var $editProfileView = document.querySelector("div[data-view=edit-profile]");
+  var $profileView = document.querySelector("div[data-view=profile]");
+
+  if (dataView === 'edit-profile') {
+    $editProfileView.className = '';
+    $profileView.className = 'hidden'
+  } else if (dataView === 'profile') {
+    $profileView.className = '';
+    $editProfileView.className = 'hidden';
+  }
+}
