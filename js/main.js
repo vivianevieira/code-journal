@@ -15,6 +15,7 @@ $form.addEventListener('submit', function (event) {
   data.profile.avatarUrl = $form.elements.avatarUrl.value;
   data.profile.bio = $form.elements.bio.value;
   $avatar.src = 'images/placeholder-image-square.jpg';
+  viewSwapping('profile');
   $form.reset();
 });
 
@@ -23,79 +24,85 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('data-profile-storage', dataJson);
 });
 
-function domTree() {
-  var $profileDataView = document.querySelector("profile");
+function profileView() {
+  // var $profileDataView = document.querySelector("div[data-view=profile]");
 
-  var $divContainer = document.createElement("div");
-  $divContainer.setAttribute("class", "container");
-  $profileDataView.appendChild($divContainer);
+  var $divContainer = document.createElement('div');
+  $divContainer.setAttribute('class', 'container');
+  // $profileDataView.appendChild($divContainer);
 
-  var $fullName = document.createElement("h2");
+  var $fullName = document.createElement('h2');
   $fullName = data.profile.fullName;
   $divContainer.appendChild($fullName);
 
-  var $divRow = document.createElement("div");
-  $divRow.setAttribute("class", "row");
+  var $divRow = document.createElement('div');
+  $divRow.setAttribute('class', 'row');
   $divContainer.appendChild($divRow);
 
-  var $divAvatar = document.createElement("div");
-  $divAvatar.setAttribute("class", "column-half");
+  var $divAvatar = document.createElement('div');
+  $divAvatar.setAttribute('class', 'column-half');
   $divRow.appendChild($divAvatar);
 
-  var $imgAvatar = document.createElement("img");
+  var $imgAvatar = document.createElement('img');
   $imgAvatar.src = data.profile.avatarUrl;
   $divAvatar.appendChild($imgAvatar);
 
-  var $divRightColumn = document.createElement("div");
-  $divRightColumn.setAttribute("class", "column-half");
+  var $divRightColumn = document.createElement('div');
+  $divRightColumn.setAttribute('class', 'column-half');
   $divRow.appendChild($divRightColumn);
 
-  var $usernameParagraph = document.createElement("p");
+  var $usernameParagraph = document.createElement('p');
   $divRightColumn.appendChild($usernameParagraph);
 
-  var $iconUsername = document.createElement("img");
-  $iconUsername.setAttribute("alt", "username-icon");
-  $iconUsername.setAttribute("class", "icon");
+  var $iconUsername = document.createElement('img');
+  $iconUsername.setAttribute('alt', 'username-icon');
+  $iconUsername.setAttribute('class', 'icon');
   $usernameParagraph.appendChild($iconUsername);
 
-  var $spanUsername = document.createElement("span");
-  $spanUsername.setAttribute("id", "userId");
+  var $spanUsername = document.createElement('span');
+  $spanUsername.setAttribute('id', 'userId');
   $spanUsername.textContent = data.profile.username;
   $usernameParagraph.appendChild($spanUsername);
 
-  var $locationParagraph = document.createElement("p");
+  var $locationParagraph = document.createElement('p');
   $divRightColumn.appendChild($locationParagraph);
 
-  var $iconLocation = document.createElement("img");
-  $iconLocation.setAttribute("alt", "location-icon");
-  $iconLocation.setAttribute("class", "icon");
+  var $iconLocation = document.createElement('img');
+  $iconLocation.setAttribute('alt', 'location-icon');
+  $iconLocation.setAttribute('class', 'icon');
   $locationParagraph.appendChild($iconLocation);
 
-  var $spanLocation = document.createElement("span");
-  $spanLocation.setAttribute("id", "locationId");
+  var $spanLocation = document.createElement('span');
+  $spanLocation.setAttribute('id', 'locationId');
   $spanLocation.textContent = data.profile.location;
   $locationParagraph.appendChild($spanLocation);
 
-  var $bioParagraph = document.createElement("p");
-  $bioParagraph.setAttribute("id", "bioId");
+  var $bioParagraph = document.createElement('p');
+  $bioParagraph.setAttribute('id', 'bioId');
   $bioParagraph.textContent = data.profile.bio;
   $divRightColumn.appendChild($bioParagraph);
 
-  return $divContainer;
+  var domTree = $divContainer;
+
+  return domTree;
 }
 
-
 function viewSwapping(dataView) {
-  var $editProfileView = document.querySelector("div[data-view=edit-profile]");
-  var $profileView = document.querySelector("div[data-view=profile]");
+  var $editProfileView = document.querySelector('div[data-view=edit-profile]');
+  var $profileView = document.querySelector('div[data-view=profile]');
 
   if (dataView === 'edit-profile') {
     $editProfileView.className = '';
-    $profileView.className = 'hidden'
+    $profileView.className = 'hidden';
   } else if (dataView === 'profile') {
     $profileView.className = '';
     $editProfileView.className = 'hidden';
+    $profileView.appendChild(profileView());
   }
 
   data.view = dataView;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+
+});
