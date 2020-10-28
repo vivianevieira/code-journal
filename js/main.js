@@ -32,7 +32,7 @@ function profileView() {
   // $profileDataView.appendChild($divContainer);
 
   var $fullName = document.createElement('h2');
-  $fullName = data.profile.fullName;
+  $fullName.textContent = data.profile.fullName;
   $divContainer.appendChild($fullName);
 
   var $divRow = document.createElement('div');
@@ -45,6 +45,8 @@ function profileView() {
 
   var $imgAvatar = document.createElement('img');
   $imgAvatar.src = data.profile.avatarUrl;
+  $imgAvatar.setAttribute('alt', 'avatar');
+  $imgAvatar.setAttribute('class', 'avatar');
   $divAvatar.appendChild($imgAvatar);
 
   var $divRightColumn = document.createElement('div');
@@ -57,6 +59,7 @@ function profileView() {
   var $iconUsername = document.createElement('img');
   $iconUsername.setAttribute('alt', 'username-icon');
   $iconUsername.setAttribute('class', 'icon');
+  $iconUsername.src = 'images/icons-username.png';
   $usernameParagraph.appendChild($iconUsername);
 
   var $spanUsername = document.createElement('span');
@@ -70,6 +73,7 @@ function profileView() {
   var $iconLocation = document.createElement('img');
   $iconLocation.setAttribute('alt', 'location-icon');
   $iconLocation.setAttribute('class', 'icon');
+  $iconLocation.src = 'images/location_icon-contact.jpeg';
   $locationParagraph.appendChild($iconLocation);
 
   var $spanLocation = document.createElement('span');
