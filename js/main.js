@@ -174,9 +174,10 @@ document.addEventListener('click', function (event) {
   }
 });
 
-// entry form - updaet image preview with url value
-// var $entryImage = document.querySelector('.entry-image');
+// entry form - update image preview when input url value changes
+var $entryUrlInput = document.querySelector('input[name="entry-url"]');
+var $entryImage = document.querySelector('#entry-image');
 
-// $entryImage.addEventListener('input', function (event) {
-//   $entryImage.src = event.target.value;
-// });
+$entryUrlInput.addEventListener('input', function (event) {
+  $entryImage.src = event.target.value;
+});
