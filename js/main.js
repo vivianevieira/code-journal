@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   } else if (data.profile.username !== '') {
     viewSwapping('profile');
-    // $menuLinks[i].setAttribute('class', 'menu-links');
   }
 });
 
