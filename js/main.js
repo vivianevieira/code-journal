@@ -6,7 +6,7 @@ $urlInput.addEventListener('input', function (event) {
 });
 
 var $form = document.querySelector('#profile-form');
-var $menuLinks = document.querySelector('.menu-links');
+var $menuLinks = document.querySelectorAll('.menu-links');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -17,7 +17,10 @@ $form.addEventListener('submit', function (event) {
   data.profile.bio = $form.elements.bio.value;
   $avatar.src = 'images/placeholder-image-square.jpg';
   viewSwapping('profile');
-  $menuLinks.setAttribute('class', 'menu-links');
+  // show nav bar menu links:
+  for (var i = 0; i < $menuLinks.length; i++) {
+    $menuLinks[i].setAttribute('class', 'menu-links');
+  }
   $form.reset();
 });
 
@@ -143,10 +146,13 @@ if (previousProfileJson !== null) {
 document.addEventListener('DOMContentLoaded', function () {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
-    $menuLinks.setAttribute('class', 'hidden menu-links');
+    // loop through all nav bar links and hide them if no username
+    for (var i = 0; i < $menuLinks.length; i++) {
+      $menuLinks[i].setAttribute('class', 'hidden menu-links');
+    }
   } else if (data.profile.username !== '') {
     viewSwapping('profile');
-    $menuLinks.setAttribute('class', 'menu-links');
+    // $menuLinks[i].setAttribute('class', 'menu-links');
   }
 });
 
