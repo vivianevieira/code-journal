@@ -190,6 +190,7 @@ $entryForm.addEventListener('submit', function (event) {
   dataObj.entryUrl = $entryForm.elements.entryUrl.value;
   dataObj.entryTitle = $entryForm.elements.entryTitle.value;
   dataObj.entryNotes = $entryForm.elements.entryNotes.value;
+  data.entries.push(dataObj);
   $entryImage.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
 });
