@@ -181,3 +181,10 @@ var $entryImage = document.querySelector('#entry-image');
 $entryUrlInput.addEventListener('input', function (event) {
   $entryImage.src = event.target.value;
 });
+
+var $entryForm = document.querySelector('#entry-form');
+
+$entryForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+});
