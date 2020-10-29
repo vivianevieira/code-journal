@@ -6,6 +6,7 @@ $urlInput.addEventListener('input', function (event) {
 });
 
 var $form = document.querySelector('#profile-form');
+var $menuLinks = document.querySelector('.menu-links');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -16,6 +17,7 @@ $form.addEventListener('submit', function (event) {
   data.profile.bio = $form.elements.bio.value;
   $avatar.src = 'images/placeholder-image-square.jpg';
   viewSwapping('profile');
+  $menuLinks.setAttribute('class', 'menu-links');
   $form.reset();
 });
 
@@ -133,8 +135,10 @@ if (previousProfileJson !== null) {
 document.addEventListener('DOMContentLoaded', function () {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
+    $menuLinks.setAttribute('class', 'hidden menu-links');
   } else if (data.profile.username !== '') {
     viewSwapping('profile');
+    $menuLinks.setAttribute('class', 'menu-links');
   }
 });
 
@@ -142,5 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('click', function (event) {
   if (event.target.getAttribute('data-view') === 'edit-profile') {
     viewSwapping('edit-profile');
+  } else if (event.target.getAttribute('data-view') === 'profile') {
+    viewSwapping('profile');
   }
 });
