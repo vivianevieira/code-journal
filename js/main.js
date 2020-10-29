@@ -136,3 +136,10 @@ document.addEventListener('DOMContentLoaded', function () {
     viewSwapping('profile');
   }
 });
+
+// add a click listener to the document
+document.addEventListener('click', function (event) {
+  if (event.target.getAttribute('data-view') === 'edit-profile') {
+    viewSwapping('edit-profile');
+  }
+});
