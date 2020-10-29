@@ -175,7 +175,7 @@ document.addEventListener('click', function (event) {
 });
 
 // entry form - update image preview when input url value changes
-var $entryUrlInput = document.querySelector('input[name="entry-url"]');
+var $entryUrlInput = document.querySelector('input[name="entryUrl"]');
 var $entryImage = document.querySelector('#entry-image');
 
 $entryUrlInput.addEventListener('input', function (event) {
@@ -183,8 +183,13 @@ $entryUrlInput.addEventListener('input', function (event) {
 });
 
 var $entryForm = document.querySelector('#entry-form');
+var dataObj = {};
 
 $entryForm.addEventListener('submit', function (event) {
   event.preventDefault();
-
+  dataObj.entryUrl = $entryForm.elements.entryUrl.value;
+  dataObj.entryTitle = $entryForm.elements.entryTitle.value;
+  dataObj.entryNotes = $entryForm.elements.entryNotes.value;
+  $entryImage.src = 'images/placeholder-image-square.jpg';
+  $entryForm.reset();
 });
