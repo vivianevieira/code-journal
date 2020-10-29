@@ -7,8 +7,7 @@ body {
 header {
   background-color: #3136e8;
   color: white;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  height: 4rem;
 }
 
 h3 {
@@ -55,7 +54,23 @@ p {
   line-height: 1.5;
 }
 
-a {
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.code-journal {
+  margin-right: 2em;
+}
+
+.menu-links {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+
+.edit-button {
   background-color: #3136e8;
   color: white;
   padding: 0.5rem 1rem;

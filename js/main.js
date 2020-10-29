@@ -89,6 +89,7 @@ function profileView() {
 
   var $editButton = document.createElement('a');
   $editButton.setAttribute('href', '#');
+  $editButton.setAttribute('class', 'edit-button');
   $editButton.setAttribute('data-view', 'edit-profile');
   $editButton.textContent = 'Edit';
   $buttonParagraph.appendChild($editButton);
