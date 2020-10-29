@@ -122,6 +122,11 @@ function viewSwapping(dataView) {
   } else if (dataView === 'profile') {
     $profileView.className = '';
     $editProfileView.className = 'hidden';
+    // empty out the content of the div[data-view="profile"]
+    while ($profileView.hasChildNodes()) {
+      $profileView.removeChild($profileView.firstChild);
+    }
+    // append the return value of the profile rendering function
     $profileView.appendChild(profileView());
   }
 
