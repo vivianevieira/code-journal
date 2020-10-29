@@ -6,6 +6,7 @@ $urlInput.addEventListener('input', function (event) {
 });
 
 var $form = document.querySelector('#profile-form');
+var $menuLinks = document.querySelector('.menu-links');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -16,6 +17,7 @@ $form.addEventListener('submit', function (event) {
   data.profile.bio = $form.elements.bio.value;
   $avatar.src = 'images/placeholder-image-square.jpg';
   viewSwapping('profile');
+  $menuLinks.setAttribute('class', 'menu-links');
   $form.reset();
 });
 
@@ -84,6 +86,16 @@ function profileView() {
   $bioParagraph.textContent = data.profile.bio;
   $divRightColumn.appendChild($bioParagraph);
 
+  var $buttonParagraph = document.createElement('p');
+  $divRightColumn.appendChild($buttonParagraph);
+
+  var $editButton = document.createElement('a');
+  $editButton.setAttribute('href', '#');
+  $editButton.setAttribute('class', 'edit-button');
+  $editButton.setAttribute('data-view', 'edit-profile');
+  $editButton.textContent = 'Edit';
+  $buttonParagraph.appendChild($editButton);
+
   var domTree = $divContainer;
 
   return domTree;
@@ -96,9 +108,25 @@ function viewSwapping(dataView) {
   if (dataView === 'edit-profile') {
     $editProfileView.className = '';
     $profileView.className = 'hidden';
+    // populate the profile form
+    $avatar.src = data.profile.avatarUrl;
+    if (data.profile.avatarUrl === '') {
+      $avatar.src = 'images/placeholder-image-square.jpg';
+    }
+    $form.elements.avatarUrl.value = data.profile.avatarUrl;
+    $form.elements.username.value = data.profile.username;
+    $form.elements.fullName.value = data.profile.fullName;
+    $form.elements.location.value = data.profile.location;
+    $form.elements.bio.value = data.profile.bio;
+
   } else if (dataView === 'profile') {
     $profileView.className = '';
     $editProfileView.className = 'hidden';
+    // empty out the content of the div[data-view="profile"]
+    while ($profileView.hasChildNodes()) {
+      $profileView.removeChild($profileView.firstChild);
+    }
+    // append the return value of the profile rendering function
     $profileView.appendChild(profileView());
   }
 
@@ -115,7 +143,18 @@ if (previousProfileJson !== null) {
 document.addEventListener('DOMContentLoaded', function () {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
+    $menuLinks.setAttribute('class', 'hidden menu-links');
   } else if (data.profile.username !== '') {
+    viewSwapping('profile');
+    $menuLinks.setAttribute('class', 'menu-links');
+  }
+});
+
+// add a click listener to the document
+document.addEventListener('click', function (event) {
+  if (event.target.getAttribute('data-view') === 'edit-profile') {
+    viewSwapping('edit-profile');
+  } else if (event.target.getAttribute('data-view') === 'profile') {
     viewSwapping('profile');
   }
 });
