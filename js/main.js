@@ -108,11 +108,13 @@ function viewSwapping(dataView) {
   var $editProfileView = document.querySelector('div[data-view=edit-profile]');
   var $profileView = document.querySelector('div[data-view=profile]');
   var $createEntry = document.querySelector('div[data-view=create-entry]');
+  var $entries = document.querySelector('div[data-view=entries]');
 
   if (dataView === 'edit-profile') {
     $editProfileView.className = '';
     $profileView.className = 'hidden';
     $createEntry.className = 'hidden';
+    $entries.className = 'hidden';
     // populate the profile form
     $avatar.src = data.profile.avatarUrl;
     if (data.profile.avatarUrl === '') {
@@ -128,6 +130,7 @@ function viewSwapping(dataView) {
     $profileView.className = '';
     $editProfileView.className = 'hidden';
     $createEntry.className = 'hidden';
+    $entries.className = 'hidden';
     // empty out the content of the div[data-view="profile"]
     while ($profileView.hasChildNodes()) {
       $profileView.removeChild($profileView.firstChild);
@@ -136,6 +139,12 @@ function viewSwapping(dataView) {
     $profileView.appendChild(profileView());
   } else if (dataView === 'create-entry') {
     $createEntry.className = '';
+    $profileView.className = 'hidden';
+    $editProfileView.className = 'hidden';
+    $entries.className = 'hidden';
+  } else if (dataView === 'entries') {
+    $entries.className = '';
+    $createEntry.className = 'hidden';
     $profileView.className = 'hidden';
     $editProfileView.className = 'hidden';
   }
@@ -168,8 +177,10 @@ document.addEventListener('click', function (event) {
     viewSwapping('edit-profile');
   } else if (event.target.getAttribute('data-view') === 'profile') {
     viewSwapping('profile');
-  } else if (event.target.getAttribute('data-view') === 'entries') {
+  } else if (event.target.getAttribute('data-view') === 'create-entry') {
     viewSwapping('create-entry');
+  } else if (event.target.getAttribute('data-view') === 'entries') {
+    viewSwapping('entries');
   }
 });
 

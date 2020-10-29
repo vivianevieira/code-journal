@@ -99,3 +99,13 @@ p {
   width: 1rem;
   margin-right: 1rem;
 }
+
+.entries {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entries a {
+  text-align: right;
+}
