@@ -61,13 +61,14 @@ p {
 }
 
 .code-journal {
-  margin-right: 2em;
+  margin-right: 1.5em;
 }
 
 .menu-links {
   text-decoration: none;
   color: white;
   font-size: 1rem;
+  padding: 1rem;
 }
 
 .edit-button {
@@ -97,4 +98,14 @@ p {
   vertical-align: middle;
   width: 1rem;
   margin-right: 1rem;
+}
+
+.entries {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entries a {
+  text-align: right;
 }

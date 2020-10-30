@@ -6,7 +6,7 @@ $urlInput.addEventListener('input', function (event) {
 });
 
 var $form = document.querySelector('#profile-form');
-var $menuLinks = document.querySelector('.menu-links');
+var $menuLinks = document.querySelectorAll('.menu-links');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -17,7 +17,10 @@ $form.addEventListener('submit', function (event) {
   data.profile.bio = $form.elements.bio.value;
   $avatar.src = 'images/placeholder-image-square.jpg';
   viewSwapping('profile');
-  $menuLinks.setAttribute('class', 'menu-links');
+  // show nav bar menu links:
+  for (var i = 0; i < $menuLinks.length; i++) {
+    $menuLinks[i].setAttribute('class', 'menu-links');
+  }
   $form.reset();
 });
 
@@ -104,10 +107,14 @@ function profileView() {
 function viewSwapping(dataView) {
   var $editProfileView = document.querySelector('div[data-view=edit-profile]');
   var $profileView = document.querySelector('div[data-view=profile]');
+  var $createEntry = document.querySelector('div[data-view=create-entry]');
+  var $entries = document.querySelector('div[data-view=entries]');
 
   if (dataView === 'edit-profile') {
     $editProfileView.className = '';
     $profileView.className = 'hidden';
+    $createEntry.className = 'hidden';
+    $entries.className = 'hidden';
     // populate the profile form
     $avatar.src = data.profile.avatarUrl;
     if (data.profile.avatarUrl === '') {
@@ -122,12 +129,24 @@ function viewSwapping(dataView) {
   } else if (dataView === 'profile') {
     $profileView.className = '';
     $editProfileView.className = 'hidden';
+    $createEntry.className = 'hidden';
+    $entries.className = 'hidden';
     // empty out the content of the div[data-view="profile"]
     while ($profileView.hasChildNodes()) {
       $profileView.removeChild($profileView.firstChild);
     }
     // append the return value of the profile rendering function
     $profileView.appendChild(profileView());
+  } else if (dataView === 'create-entry') {
+    $createEntry.className = '';
+    $profileView.className = 'hidden';
+    $editProfileView.className = 'hidden';
+    $entries.className = 'hidden';
+  } else if (dataView === 'entries') {
+    $entries.className = '';
+    $createEntry.className = 'hidden';
+    $profileView.className = 'hidden';
+    $editProfileView.className = 'hidden';
   }
 
   data.view = dataView;
@@ -143,10 +162,12 @@ if (previousProfileJson !== null) {
 document.addEventListener('DOMContentLoaded', function () {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
-    $menuLinks.setAttribute('class', 'hidden menu-links');
+    // loop through all nav bar links and hide them if no username
+    for (var i = 0; i < $menuLinks.length; i++) {
+      $menuLinks[i].setAttribute('class', 'hidden menu-links');
+    }
   } else if (data.profile.username !== '') {
     viewSwapping('profile');
-    $menuLinks.setAttribute('class', 'menu-links');
   }
 });
 
@@ -156,5 +177,30 @@ document.addEventListener('click', function (event) {
     viewSwapping('edit-profile');
   } else if (event.target.getAttribute('data-view') === 'profile') {
     viewSwapping('profile');
+  } else if (event.target.getAttribute('data-view') === 'create-entry') {
+    viewSwapping('create-entry');
+  } else if (event.target.getAttribute('data-view') === 'entries') {
+    viewSwapping('entries');
   }
+});
+
+// entry form - update image preview when input url value changes
+var $entryUrlInput = document.querySelector('input[name="entryUrl"]');
+var $entryImage = document.querySelector('#entry-image');
+
+$entryUrlInput.addEventListener('input', function (event) {
+  $entryImage.src = event.target.value;
+});
+
+var $entryForm = document.querySelector('#entry-form');
+var dataObj = {};
+
+$entryForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  dataObj.entryUrl = $entryForm.elements.entryUrl.value;
+  dataObj.entryTitle = $entryForm.elements.entryTitle.value;
+  dataObj.entryNotes = $entryForm.elements.entryNotes.value;
+  data.entries.push(dataObj);
+  $entryImage.src = 'images/placeholder-image-square.jpg';
+  $entryForm.reset();
 });
