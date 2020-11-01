@@ -171,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// add a click listener to the document
 document.addEventListener('click', function (event) {
   if (event.target.getAttribute('data-view') === 'edit-profile') {
     viewSwapping('edit-profile');
@@ -184,7 +183,7 @@ document.addEventListener('click', function (event) {
   }
 });
 
-// entry form - update image preview when input url value changes
+// entry form
 var $entryUrlInput = document.querySelector('input[name="entryUrl"]');
 var $entryImage = document.querySelector('#entry-image');
 
@@ -193,14 +192,55 @@ $entryUrlInput.addEventListener('input', function (event) {
 });
 
 var $entryForm = document.querySelector('#entry-form');
-var dataObj = {};
 
 $entryForm.addEventListener('submit', function (event) {
+  var dataObj = {};
+  var $ol = document.querySelector('ol');
   event.preventDefault();
   dataObj.entryUrl = $entryForm.elements.entryUrl.value;
   dataObj.entryTitle = $entryForm.elements.entryTitle.value;
   dataObj.entryNotes = $entryForm.elements.entryNotes.value;
-  data.entries.push(dataObj);
+  data.entries.unshift(dataObj);
   $entryImage.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
+  $ol.prepend(journalEntries(0));
+  viewSwapping('entries');
+});
+
+function journalEntries(index) {
+  var $divRow = document.createElement('div');
+  $divRow.setAttribute('class', 'row');
+
+  var $divColumnHalf = document.createElement('div');
+  $divColumnHalf.setAttribute('class', 'column-half');
+  $divRow.appendChild($divColumnHalf);
+
+  var $imageEntry = document.createElement('img');
+  $imageEntry.setAttribute('alt', 'entry-image');
+  $imageEntry.setAttribute('class', 'avatar');
+  $imageEntry.src = data.entries[index].entryUrl;
+  $divColumnHalf.appendChild($imageEntry);
+
+  var $divColumnEntry = document.createElement('div');
+  $divColumnEntry.setAttribute('class', 'column-half');
+  $divRow.appendChild($divColumnEntry);
+
+  var $entryTitle = document.createElement('h3');
+  $entryTitle.textContent = data.entries[index].entryTitle;
+  $divColumnEntry.appendChild($entryTitle);
+
+  var $entryParagraph = document.createElement('p');
+  $entryParagraph.textContent = data.entries[index].entryNotes;
+  $divColumnEntry.appendChild($entryParagraph);
+
+  return $divRow;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var arrayLength = data.entries.length;
+  var $ol = document.querySelector('ol');
+  for (var i = 0; i < arrayLength; i++) {
+    var domTreeJournalEntry = journalEntries(i);
+    $ol.append(domTreeJournalEntry);
+  }
 });
